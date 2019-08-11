@@ -1,0 +1,35 @@
+# Looping and appending different csv files
+data_raw = []
+for week in range(1, 11):
+    week_data = pd.read_csv('data{}.csv'.format(week)).values
+    data_raw.append(week_data)
+    
+# Using glob function to read files from directory
+path =r'C:\Users\31950627\kerast\TUC_users_incoming_traffic' # use the  path to the datafile
+allFiles = glob.glob(path + "/*.csv")
+#frame = pd.DataFrame()
+data_list = []
+for file in allFiles:
+    df = pd.read_csv(file_,index_col=None, header=0)
+    data_list.append(df)
+    
+    
+import glob
+files = glob.glob('data*.csv')
+# ['data1.csv', 'data2.csv', 'data3.csv']
+
+
+>>> import glob
+>>> glob.glob('/path/to/dir/*.csv')
+
+import glob
+path = "path/to/dir/*.csv"
+for fname in glob.glob(path):
+    print(fname)
+    
+df_list = []
+for file in os.listdir(r'C:\data\householdata'):
+    df = pd.read_csv(file)
+    df_list.append(df)
+final_df = df.append(df for df in df_list)
+final_df.to_csv('final.csv', index=False)
